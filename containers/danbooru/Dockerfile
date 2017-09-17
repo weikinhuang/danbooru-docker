@@ -1,5 +1,7 @@
 FROM ruby:2.4-slim-stretch
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN set -x \
     && apt-get update && apt-get install -y \
         ca-certificates \

@@ -11,11 +11,6 @@ module Danbooru
       end
     end
 
-    # This is a salt used to make dictionary attacks on account passwords harder.
-    def password_salt
-      "choujin-steiner"
-    end
-
     # Set the default level, permissions, and other settings for new users here.
     def customize_new_user(user)
       # user.level = User::Levels::MEMBER
@@ -42,10 +37,6 @@ module Danbooru
       NullBackupService.new
     end
 
-    def memcached_servers
-      %w(memcached:11211)
-    end
-
     # Determines who can see ads.
     def can_see_ads?(user)
       false
@@ -66,11 +57,6 @@ module Danbooru
 
     def enable_post_search_counts
       false
-    end
-
-    # you should override this
-    def email_key
-      "zDMSATq0W3hmA5p3rKTgD"
     end
 
     # Thumbnail size

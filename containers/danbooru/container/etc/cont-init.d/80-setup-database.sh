@@ -7,7 +7,7 @@ IFS=$'\n\t'
 cd /var/www/danbooru2/shared
 
 # create database.yml
-cat /var/www/templates/database.yml.tmpl \
+cat /var/www/templates/database.yml \
     | sed "s/__POSTGRES_USERNAME__/${POSTGRES_USERNAME}/g" \
     | sed "s/__POSTGRES_PASSWORD__/${POSTGRES_PASSWORD}/g" \
     | sed "s/__POSTGRES_HOSTNAME__/${POSTGRES_HOSTNAME}/g" \

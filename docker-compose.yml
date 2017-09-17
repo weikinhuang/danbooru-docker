@@ -1,10 +1,9 @@
 version: '2'
 
 services:
-  moebooru:
+  danbooru:
     build:
-      context: ./containers/dev
-    working_dir: /var/www/danbooru2/shared
+      context: ./containers/danbooru
     ports:
       - 8080:8080
     environment:
@@ -18,15 +17,18 @@ services:
 
       - SERVER_NAME=docker.lan
 
-      # openssl rand -hex 32 > ~/.danbooru/secret_token
-      # openssl rand -hex 32 > ~/.danbooru/session_secret_key
-      - SECRET_TOKEN=5902091a0f8e31ceca499b6d5f39dd10f7f97c5bd457b3a08ee55638e2b0df10
-      - SESSION_SECRET_KEY=941b5047ef21df82fca8812eef18cbe29580956d5e123a750c4d911164fb8f9f
-
       - DANBOORU_MEMCACHED_SERVERS=memcached:11211
 
-      - DANBOORU_PASSWORD_SALT=choujin-steiner
-      - DANBOORU_EMAIL_KEY=zDMSATq0W3hmA5p3rKTgD
+      # openssl rand -hex 32 > ~/.danbooru/secret_token
+      # openssl rand -hex 32 > ~/.danbooru/session_secret_key
+      - SECRET_TOKEN=${SECRET_TOKEN}
+      - SESSION_SECRET_KEY=${SESSION_SECRET_KEY}
+
+      - DANBOORU_PASSWORD_SALT=${DANBOORU_PASSWORD_SALT}
+      - DANBOORU_EMAIL_KEY=${DANBOORU_EMAIL_KEY}
+
+      - RECAPTCHA_SITE_KEY=${RECAPTCHA_SITE_KEY}
+      - RECAPTCHA_SECRET_KEY=${RECAPTCHA_SECRET_KEY}
     volumes:
       - danbooru-data:/var/www/danbooru2/shared/public/data
 

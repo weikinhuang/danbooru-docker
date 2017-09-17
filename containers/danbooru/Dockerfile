@@ -1,22 +1,20 @@
 FROM ruby:2.4-slim-stretch
 
 ENV DEBIAN_FRONTEND noninteractive
-
-RUN set -x \
-    && rm -rf /var/lib/apt/lists/* \
-    && apt-get update && apt-get install --quiet --no-install-recommends -y \
-        ca-certificates \
-        curl \
-    && rm -rf /var/lib/apt/lists/*
-
 RUN set -x \
     && BUILD_DEPS=" \
+        autoconf \
         automake \
+        bison \
         build-essential \
         git \
+        flex \
+        ragel \
     " \
     && apt-get update && apt-get install --quiet --no-install-recommends -y \
         ${BUILD_DEPS} \
+        ca-certificates \
+        curl \
         libssl-dev \
         libxml2-dev \
         libxslt-dev \
@@ -26,9 +24,6 @@ RUN set -x \
         libpq-dev \
         ncurses-dev \
         \
-        flex \
-        bison \
-        ragel \
         imagemagick \
         libmagickcore-dev \
         libmagickwand-dev \

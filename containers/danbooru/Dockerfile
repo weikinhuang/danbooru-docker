@@ -40,6 +40,7 @@ RUN set -x \
     && git clone --depth=1 https://github.com/r888888888/danbooru /var/www/danbooru2/shared \
     && cd /var/www/danbooru2/shared \
     && git rev-parse --short HEAD > REVISION \
+    && git rev-parse HEAD > /REVISION \
     && rm -rf /var/www/danbooru2/shared/.git \
     \
     && cd /var/www/danbooru2/shared \

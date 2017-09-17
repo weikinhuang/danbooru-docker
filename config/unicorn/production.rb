@@ -14,8 +14,8 @@ timeout ENV["UNICORN_TIMEOUT"].to_i || 90
 user = ENV["UNICORN_USER"] || "danbooru"
 group = ENV["UNICORN_GROUP"] || "danbooru"
 
-stderr_path ENV["UNICORN_LOG"] || "log/#{instance}.log"
-stdout_path ENV["UNICORN_LOG"] || "log/#{instance}.log"
+#stderr_path ENV["UNICORN_LOG"] || "log/unicorn.log"
+#stdout_path ENV["UNICORN_LOG"] || "log/unicorn.log"
 
 working_directory app_path
 pid ENV["UNICORN_PIDFILE"] || "#{app_path}/tmp/pids/#{instance}.pid"

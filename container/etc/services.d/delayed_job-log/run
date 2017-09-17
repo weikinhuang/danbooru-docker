@@ -1,0 +1,3 @@
+#!/usr/bin/with-contenv bash
+
+exec s6-setuidgid danbooru tail -q -F -n0 /var/www/danbooru2/shared/log/production.log

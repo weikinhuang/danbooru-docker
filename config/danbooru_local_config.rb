@@ -39,11 +39,12 @@ module Danbooru
     # S3BackupService: Backup to Amazon S3. Must configure aws_access_key_id,
     # aws_secret_access_key, and aws_s3_bucket_name. Bucket must exist and be writable.
     def backup_service
-      if Rails.env.production?
-        S3BackupService.new
-      else
-        NullBackupService.new
-      end
+      #if Rails.env.production?
+      #  S3BackupService.new
+      #else
+      #  NullBackupService.new
+      #end
+      NullBackupService.new
     end
 
     # What method to use to store images.

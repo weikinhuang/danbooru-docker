@@ -28,6 +28,8 @@ services:
 
       - ./container/var/www/danbooru2/shared/config.ru:/var/www/danbooru2/shared/config.ru
 
+      #- ./danbooru/script/delayed_job:/var/www/danbooru2/shared/danbooru/script/delayed_job
+
   postgres:
     image: postgres:9.4-alpine
     environment:

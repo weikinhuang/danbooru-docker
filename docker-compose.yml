@@ -1,0 +1,55 @@
+version: '2'
+
+services:
+  moebooru:
+    build:
+      context: ./containers/dev
+    working_dir: /var/www/danbooru2/shared
+    ports:
+      - 8080:8080
+      - 3000:3000
+      - 9000:9000
+    environment:
+      - RAILS_ENV=production
+      - NEWRELIC_AGENT_ENABLED=false
+#      - RAILS_SERVE_STATIC_FILES=1
+    volumes:
+      - danbooru-data:/var/www/danbooru2/shared/public/data
+
+      - ./config/danbooru_local_config.rb:/var/www/danbooru2/shared/config/danbooru_local_config.rb:ro
+      - ./config/database.yml:/var/www/danbooru2/shared/config/database.yml:ro
+      - ./config/environments/production.rb:/var/www/danbooru2/shared/config/environments/production.rb:ro
+      - ./config/unicorn/production.rb:/var/www/danbooru2/shared/config/unicorn/production.rb
+      - ./config/env.sh:/var/www/danbooru2/shared/.env.production
+
+      - ./container/etc/cont-init.d:/etc/cont-init.d
+      - ./container/etc/services.d:/etc/services.d
+      - ./container/etc/nginx/sites-available/default:/etc/nginx/sites-available/default
+
+      - ./container/var/www/danbooru2/shared/config.ru:/var/www/danbooru2/shared/config.ru
+
+  postgres:
+    image: postgres:9.4-alpine
+    environment:
+      POSTGRES_DB: danbooru2
+      POSTGRES_USER: danbooru
+      POSTGRES_PASSWORD: foobarXYZ123
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  postgres-archive:
+    image: postgres:9.4-alpine
+    environment:
+      POSTGRES_DB: danbooru2
+      POSTGRES_USER: danbooru
+      POSTGRES_PASSWORD: foobarXYZ123
+    volumes:
+      - postgres-archive-data:/var/lib/postgresql/data
+
+  memcached:
+    image: memcached:1.5-alpine
+
+volumes:
+  postgres-data:
+  postgres-archive-data:
+  danbooru-data:

@@ -1,0 +1,14 @@
+#!/usr/bin/execlineb -P
+
+trap -x
+{
+  term
+  {
+    foreground
+    {
+      import -u ! kill ${!}
+    }
+  }
+}
+
+exec nginx -g "daemon off;"

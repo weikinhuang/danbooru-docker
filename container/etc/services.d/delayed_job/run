@@ -1,0 +1,12 @@
+#!/usr/bin/with-contenv bash
+
+set -x
+
+cd /var/www/danbooru2/shared
+
+export HOME=/var/www/danbooru2/shared/tmp
+export TMPDIR=/var/www/danbooru2/shared/tmp
+export TMP=/var/www/danbooru2/shared/tmp
+export TEMP=/var/www/danbooru2/shared/tmp
+exec s6-setuidgid danbooru script/delayed_job run
+#exec script/delayed_job run

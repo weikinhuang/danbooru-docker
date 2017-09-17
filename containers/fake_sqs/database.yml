@@ -1,0 +1,6 @@
+---
+queues:
+  default:
+    QueueName: default
+    Arn: arn:aws:sqs:us-east-1:hash:default
+    Attributes: {}

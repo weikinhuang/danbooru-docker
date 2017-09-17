@@ -1,0 +1,21 @@
+#!/usr/bin/with-contenv bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+cd /var/www/danbooru2/shared
+
+# for running in dev mode
+#RAILS_ENV=production bundle exec rails server -b 0.0.0.0 -p 3000
+
+# environment vars
+export UNICORN_TIMEOUT=${UNICORN_TIMEOUT:-90} \
+    UNICORN_PROCESSES=${UNICORN_PROCESSES:-2}
+
+# start unicorn process
+#exec bundle exec unicorn -E production -c config/unicorn/production.rb
+export HOME=/var/www/danbooru2/shared/tmp
+export TMPDIR=/var/www/danbooru2/shared/tmp
+export TMP=/var/www/danbooru2/shared/tmp
+export TEMP=/var/www/danbooru2/shared/tmp
+exec s6-setuidgid danbooru bundle exec unicorn -E production -c config/unicorn/production.rb

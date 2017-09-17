@@ -3,7 +3,7 @@ FROM ruby:2.4-slim-stretch
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN set -x \
-    && apt-get update && apt-get install -y \
+    && apt-get update && apt-get install --quiet --no-install-recommends -y \
         ca-certificates \
         curl \
     && rm -rf /var/lib/apt/lists/*

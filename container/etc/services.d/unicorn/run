@@ -5,17 +5,16 @@ IFS=$'\n\t'
 
 cd /var/www/danbooru2/shared
 
-# for running in dev mode
-#RAILS_ENV=production bundle exec rails server -b 0.0.0.0 -p 3000
-
 # environment vars
-export UNICORN_TIMEOUT=${UNICORN_TIMEOUT:-90} \
-    UNICORN_PROCESSES=${UNICORN_PROCESSES:-2}
+export UNICORN_TIMEOUT=${UNICORN_TIMEOUT:-90}
+export UNICORN_PROCESSES=${UNICORN_PROCESSES:-1}
 
-# start unicorn process
-#exec bundle exec unicorn -E production -c config/unicorn/production.rb
+# ruby env
+export RAILS_ENV=production
 export HOME=/var/www/danbooru2/shared/tmp
 export TMPDIR=/var/www/danbooru2/shared/tmp
 export TMP=/var/www/danbooru2/shared/tmp
 export TEMP=/var/www/danbooru2/shared/tmp
+
+# start unicorn process
 exec s6-setuidgid danbooru bundle exec unicorn -E production -c config/unicorn/production.rb

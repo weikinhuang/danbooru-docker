@@ -39,20 +39,7 @@ module Danbooru
     # S3BackupService: Backup to Amazon S3. Must configure aws_access_key_id,
     # aws_secret_access_key, and aws_s3_bucket_name. Bucket must exist and be writable.
     def backup_service
-      #if Rails.env.production?
-      #  S3BackupService.new
-      #else
-      #  NullBackupService.new
-      #end
       NullBackupService.new
-    end
-
-    # What method to use to store images.
-    # local_flat: Store every image in one directory.
-    # local_hierarchy: Store every image in a hierarchical directory, based on the post's MD5 hash. On some file systems this may be faster.
-    def image_store
-      #:local_flat
-      :local_hierarchy
     end
 
     def memcached_servers
@@ -61,7 +48,6 @@ module Danbooru
 
     # Determines who can see ads.
     def can_see_ads?(user)
-      #!user.is_gold?
       false
     end
 
@@ -75,7 +61,6 @@ module Danbooru
     end
 
     def is_user_restricted?(user)
-      #!user.is_gold?
       false
     end
 
@@ -86,6 +71,21 @@ module Danbooru
     # you should override this
     def email_key
       "zDMSATq0W3hmA5p3rKTgD"
+    end
+
+    # Thumbnail size
+    def small_image_width
+      150
+    end
+
+    # Large resize image width. Set to nil to disable.
+    def large_image_width
+      650
+    end
+
+    # Users cannot search for more than X regular tags at a time.
+    def base_tag_query_limit
+      10
     end
 
     # enable s3-nginx proxy caching

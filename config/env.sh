@@ -38,9 +38,9 @@
 #
 # If you are connecting to PostgreSQL via socket, omit the hostname (e.g.
 # postgresql:///danbooru2)
-export DATABASE_URL="postgresql://danbooru:foobarXYZ123@postgres/danbooru2"
-export ARCHIVE_DATABASE_URL="postgresql://danbooru:foobarXYZ123@postgres-archive/danbooru2"
-export RO_DATABASE_URL="$DATABASE_URL"
+#export DATABASE_URL="postgresql://danbooru:foobarXYZ123@postgres/danbooru2"
+#export ARCHIVE_DATABASE_URL="postgresql://danbooru:foobarXYZ123@postgres/danbooru2"
+#export RO_DATABASE_URL="$DATABASE_URL"
 
 # Put these in .env.test to define your test database.
 # export DATABASE_URL="postgresql://localhost/danbooru2_test"
@@ -52,6 +52,8 @@ export RO_DATABASE_URL="$DATABASE_URL"
 #
 
 # These take precedence over ~/.danbooru/{secret_token,session_secret_key}.
+# openssl rand -hex 32 > ~/.danbooru/secret_token
+# openssl rand -hex 32 > ~/.danbooru/session_secret_key
 export SECRET_TOKEN=5902091a0f8e31ceca499b6d5f39dd10f7f97c5bd457b3a08ee55638e2b0df10
 export SESSION_SECRET_KEY=941b5047ef21df82fca8812eef18cbe29580956d5e123a750c4d911164fb8f9f
 

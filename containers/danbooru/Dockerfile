@@ -66,6 +66,23 @@ RUN set -x \
 # explicitly set user/group IDs
 RUN groupadd -r danbooru --gid=999 && useradd -r -g danbooru --uid=999 danbooru
 
+# create work directories
+RUN set -x \
+    && mkdir -p \
+        /var/www/danbooru2/shared/public/data \
+        /var/www/danbooru2/shared/public/data/preview \
+        /var/www/danbooru2/shared/public/data/sample \
+        /var/www/danbooru2/shared/log \
+        /var/www/danbooru2/shared/tmp \
+        /var/www/danbooru2/shared/tmp/pids \
+    && chown -R danbooru:danbooru \
+        /var/www/danbooru2/shared/public/data \
+        /var/www/danbooru2/shared/public/data/preview \
+        /var/www/danbooru2/shared/public/data/sample \
+        /var/www/danbooru2/shared/log \
+        /var/www/danbooru2/shared/tmp \
+        /var/www/danbooru2/shared/tmp/pids
+
 # copy container overlay
 COPY /container /
 

@@ -21,4 +21,5 @@ export TMPDIR=/var/www/danbooru2/shared/tmp
 export TMP=/var/www/danbooru2/shared/tmp
 export TEMP=/var/www/danbooru2/shared/tmp
 
-s6-setuidgid danbooru bundle exec rake db:create db:migrate
+# accept failure because the database might already exist
+s6-setuidgid danbooru bundle exec rake db:create db:migrate || true

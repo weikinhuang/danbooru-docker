@@ -24,10 +24,6 @@ module Danbooru
       # user.default_image_size = "large"
       # user.per_page = 20
       # user.disable_tagged_filenames = false
-
-      # unlimited api calls
-      user.api_burst_limit = 1000000
-
       true
     end
 
